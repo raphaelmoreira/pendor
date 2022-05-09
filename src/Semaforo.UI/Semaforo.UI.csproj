@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+		<LangVersion>10</LangVersion>
+        <!-- Não usaremos SignalR, porém, não faz mal a ninguém ficar habilitado -->
+		<Nullable>enable</Nullable>	
+		<!-- 
+			Nem sempre queremos tudo, certo? 
+			Caso queira saber quais using implícitos vem num console/class library, visite:
+			https://docs.microsoft.com/pt-br/dotnet/core/tutorials/top-level-templates#implicit-using-directives
+			
+			O pacotão web é mais gordo, então convém pensar bem se vale a pena:
+			
+			System.Net.Http.Json
+			Microsoft.AspNetCore.Builder
+			Microsoft.AspNetCore.Hosting
+			Microsoft.AspNetCore.Http
+			Microsoft.AspNetCore.Routing
+			Microsoft.Extensions.Configuration
+			Microsoft.Extensions.DependencyInjection
+			Microsoft.Extensions.Hosting
+			Microsoft.Extensions.Logging
+		-->
+		<ImplicitUsings>disable</ImplicitUsings>
+		
+		<!--
+			Somente para pacotes NuGet
+			<PackageId>Nonono</PackageId>
+			<Version>0.0.0</Version>
+			<Authors>Nonono</Authors>
+			<Company>Nonono</Company>
+		-->		 
+    </PropertyGroup>
+	
+	<ItemGroup>
+		<!-- O mínimo necessário, pois a UI será apenas um executor. -->
+		<Using Include="System" />
+		<Using Include="BenchmarkDotNet.Attributes" />
+		<Using Include="BenchmarkDotNet.Order" />
+		<Using Include="BenchmarkDotNet.Running" />
+		<Using Include="Trombadinhas.TipoTexto" />
+		<Using Include="Semaforo.UI.TipoTexto" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\Trombadinhas\Trombadinhas.csproj" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
+	</ItemGroup>   
+</Project>
+

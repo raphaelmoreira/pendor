@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Semaforo.UI", "Semaforo.UI\Semaforo.UI.csproj", "{BC617D60-10C2-467C-88EC-85268E5928F0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{27D31092-04A8-4D7C-AA9B-EFA8D61DF4A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trombadinhas", "Trombadinhas\Trombadinhas.csproj", "{B6344180-4462-4290-B7ED-EB38DA666818}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC617D60-10C2-467C-88EC-85268E5928F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC617D60-10C2-467C-88EC-85268E5928F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC617D60-10C2-467C-88EC-85268E5928F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC617D60-10C2-467C-88EC-85268E5928F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6344180-4462-4290-B7ED-EB38DA666818}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6344180-4462-4290-B7ED-EB38DA666818}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6344180-4462-4290-B7ED-EB38DA666818}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6344180-4462-4290-B7ED-EB38DA666818}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BC617D60-10C2-467C-88EC-85268E5928F0} = {27D31092-04A8-4D7C-AA9B-EFA8D61DF4A2}
+		{B6344180-4462-4290-B7ED-EB38DA666818} = {27D31092-04A8-4D7C-AA9B-EFA8D61DF4A2}
+	EndGlobalSection
+EndGlobal
