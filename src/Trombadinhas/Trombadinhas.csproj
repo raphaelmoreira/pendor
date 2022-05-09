@@ -1,11 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
         <!-- Queremos todos os implícitos... -->
 		<ImplicitUsings>enable</ImplicitUsings>
         <!-- Não usaremos SignalR, porém, não faz mal a ninguém ficar habilitado -->
 		<Nullable>enable</Nullable>
+		<TargetFramework>net6.0</TargetFramework>
+		<LangVersion>10</LangVersion>
     </PropertyGroup>
 
 	<ItemGroup>

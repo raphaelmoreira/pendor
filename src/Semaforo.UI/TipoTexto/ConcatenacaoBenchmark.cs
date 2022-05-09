@@ -7,12 +7,27 @@ namespace Semaforo.UI.TipoTexto;
 [RankColumn]
 public class ConcatenacaoBenchmark
 {
-    private const string ValorA = "Não", ValorB = "alimente", ValorC = "os", ValorD = "animais";
-    private const string Separador = "-";
-    private const string HashTag = "#";
-    private readonly string _hashTagTemplateFormat = $"{{HashTag}}{0}{{Separador}}{1}{{Separador}}{2}{{Separador}}{3}";
+    private const string ConstanteA = "Não", ConstanteB = "alimente", ConstanteC = "os", ConstanteD = "animais";
+    private const string ConstanteSeparador = "-";
+    private const string ConstanteHashTag = "#";
+    private readonly string _hashTagTemplateFormat = 
+        $"{ConstanteHashTag}{{0}}" +
+        $"{ConstanteSeparador}{{1}}" +
+        $"{ConstanteSeparador}{{2}}" +
+        $"{ConstanteSeparador}{{3}}";
+    
+    private string ValorA = ConstanteA, ValorB = ConstanteB, ValorC = ConstanteC, ValorD = ConstanteD;
+    private string Separador = ConstanteSeparador;
+    private string HashTag = ConstanteHashTag;
+
     
     [Benchmark(Baseline = true)]
+    public bool ComOperadorConstante()
+    {
+        var resultado = ConstanteHashTag + ConstanteA + ConstanteSeparador + ConstanteB + ConstanteSeparador + ConstanteC + ConstanteSeparador + ConstanteD;
+        return string.IsNullOrWhiteSpace(resultado);
+    }
+    
     public bool ComOperador()
     {
         var resultado = HashTag + ValorA + Separador + ValorB + Separador + ValorC + Separador + ValorD;
@@ -22,21 +37,21 @@ public class ConcatenacaoBenchmark
     [Benchmark]
     public bool ComStringFormat()
     {
-        var resultado = string.Format(_hashTagTemplateFormat, ValorA, ValorB, ValorC, ValorD);
+        var resultado = string.Format(_hashTagTemplateFormat, ConstanteA, ConstanteB, ConstanteC, ConstanteD);
         return string.IsNullOrWhiteSpace(resultado);
     }
     
     [Benchmark]
     public bool ComConcat()
     {
-        var resultado = string.Concat(HashTag, ValorA, Separador, ValorB, Separador, ValorC, Separador, ValorD);
+        var resultado = string.Concat(ConstanteHashTag, ConstanteA, ConstanteSeparador, ConstanteB, ConstanteSeparador, ConstanteC, ConstanteSeparador, ConstanteD);
         return string.IsNullOrWhiteSpace(resultado);
     }
     
     [Benchmark]
     public bool ComJoin()
     {
-        var resultado = HashTag + string.Join(Separador, ValorA, ValorB, ValorC, ValorD);
+        var resultado = ConstanteHashTag + string.Join(ConstanteSeparador, ConstanteA, ConstanteB, ConstanteC, ConstanteD);
         return string.IsNullOrWhiteSpace(resultado);
     }
     
@@ -44,14 +59,14 @@ public class ConcatenacaoBenchmark
     public bool ComStringBuilder()
     {
         var resultado = new StringBuilder();
-        resultado.Append(HashTag);
-        resultado.Append(ValorA);
-        resultado.Append(Separador);
-        resultado.Append(ValorB);
-        resultado.Append(Separador);
-        resultado.Append(ValorC);
-        resultado.Append(Separador);
-        resultado.Append(ValorD);
+        resultado.Append(ConstanteHashTag);
+        resultado.Append(ConstanteA);
+        resultado.Append(ConstanteSeparador);
+        resultado.Append(ConstanteB);
+        resultado.Append(ConstanteSeparador);
+        resultado.Append(ConstanteC);
+        resultado.Append(ConstanteSeparador);
+        resultado.Append(ConstanteD);
         
         return string.IsNullOrWhiteSpace(resultado.ToString());
     }
@@ -60,7 +75,7 @@ public class ConcatenacaoBenchmark
     public bool ComStringBuilderFormat()
     {
         var resultado = new StringBuilder();
-        resultado.AppendFormat(_hashTagTemplateFormat, ValorA, ValorB, ValorC, ValorD);
+        resultado.AppendFormat(_hashTagTemplateFormat, ConstanteA, ConstanteB, ConstanteC, ConstanteD);
         return string.IsNullOrWhiteSpace(resultado.ToString());
     }
     
@@ -68,13 +83,20 @@ public class ConcatenacaoBenchmark
     public bool ComStringBuilderJoin()
     {
         var resultado = new StringBuilder();
-        resultado.Append(HashTag); 
-        resultado.AppendJoin(Separador, ValorA, ValorB, ValorC, ValorD);
+        resultado.Append(ConstanteHashTag); 
+        resultado.AppendJoin(ConstanteSeparador, ConstanteA, ConstanteB, ConstanteC, ConstanteD);
         return string.IsNullOrWhiteSpace(resultado.ToString());
     }
     
     [Benchmark]
     public bool ComInterpolacao()
+    {
+        var resultado = $"{ConstanteHashTag}{ConstanteA}{ConstanteSeparador}{ConstanteB}{ConstanteSeparador}{ConstanteC}{ConstanteSeparador}{ConstanteD}";
+        return string.IsNullOrWhiteSpace(resultado);
+    }
+    
+    [Benchmark]
+    public bool ComInterpolacaoStringHandler()
     {
         var resultado = $"{HashTag}{ValorA}{Separador}{ValorB}{Separador}{ValorC}{Separador}{ValorD}";
         return string.IsNullOrWhiteSpace(resultado);
