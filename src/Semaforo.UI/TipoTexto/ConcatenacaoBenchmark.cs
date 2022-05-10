@@ -35,28 +35,49 @@ public class ConcatenacaoBenchmark
     }
     
     [Benchmark]
-    public bool ComStringFormat()
+    public bool ComStringFormatConstante()
     {
         var resultado = string.Format(_hashTagTemplateFormat, ConstanteA, ConstanteB, ConstanteC, ConstanteD);
         return string.IsNullOrWhiteSpace(resultado);
     }
     
     [Benchmark]
-    public bool ComConcat()
+    public bool ComStringFormat()
+    {
+        var resultado = string.Format(_hashTagTemplateFormat, ValorA, ValorB, ValorC, ValorD);
+        return string.IsNullOrWhiteSpace(resultado);
+    }
+    
+    [Benchmark]
+    public bool ComConcatConstante()
     {
         var resultado = string.Concat(ConstanteHashTag, ConstanteA, ConstanteSeparador, ConstanteB, ConstanteSeparador, ConstanteC, ConstanteSeparador, ConstanteD);
         return string.IsNullOrWhiteSpace(resultado);
     }
     
     [Benchmark]
-    public bool ComJoin()
+    public bool ComConcat()
+    {
+        var resultado = string.Concat(HashTag, ValorA, Separador, ValorB, Separador, ValorC, Separador, ValorD);
+        return string.IsNullOrWhiteSpace(resultado);
+    }
+    
+    [Benchmark]
+    public bool ComJoinConstante()
     {
         var resultado = ConstanteHashTag + string.Join(ConstanteSeparador, ConstanteA, ConstanteB, ConstanteC, ConstanteD);
         return string.IsNullOrWhiteSpace(resultado);
     }
     
     [Benchmark]
-    public bool ComStringBuilder()
+    public bool ComJoin()
+    {
+        var resultado = HashTag + string.Join(Separador, ValorA, ValorB, ValorC, ValorD);
+        return string.IsNullOrWhiteSpace(resultado);
+    }
+    
+    [Benchmark]
+    public bool ComStringBuilderConstante()
     {
         var resultado = new StringBuilder();
         resultado.Append(ConstanteHashTag);
@@ -72,7 +93,23 @@ public class ConcatenacaoBenchmark
     }
     
     [Benchmark]
-    public bool ComStringBuilderFormat()
+    public bool ComStringBuilder()
+    {
+        var resultado = new StringBuilder();
+        resultado.Append(HashTag);
+        resultado.Append(ValorA);
+        resultado.Append(Separador);
+        resultado.Append(ValorB);
+        resultado.Append(Separador);
+        resultado.Append(ValorC);
+        resultado.Append(Separador);
+        resultado.Append(ValorD);
+        
+        return string.IsNullOrWhiteSpace(resultado.ToString());
+    }
+    
+    [Benchmark]
+    public bool ComStringBuilderFormatConstante()
     {
         var resultado = new StringBuilder();
         resultado.AppendFormat(_hashTagTemplateFormat, ConstanteA, ConstanteB, ConstanteC, ConstanteD);
@@ -80,7 +117,15 @@ public class ConcatenacaoBenchmark
     }
     
     [Benchmark]
-    public bool ComStringBuilderJoin()
+    public bool ComStringBuilderFormat()
+    {
+        var resultado = new StringBuilder();
+        resultado.AppendFormat(_hashTagTemplateFormat, ValorA, ValorB, ValorC, ValorD);
+        return string.IsNullOrWhiteSpace(resultado.ToString());
+    }
+    
+    [Benchmark]
+    public bool ComStringBuilderJoinConstante()
     {
         var resultado = new StringBuilder();
         resultado.Append(ConstanteHashTag); 
@@ -89,14 +134,23 @@ public class ConcatenacaoBenchmark
     }
     
     [Benchmark]
-    public bool ComInterpolacao()
+    public bool ComStringBuilderJoin()
+    {
+        var resultado = new StringBuilder();
+        resultado.Append(HashTag); 
+        resultado.AppendJoin(Separador, ValorA, ValorB, ValorC, ValorD);
+        return string.IsNullOrWhiteSpace(resultado.ToString());
+    }
+    
+    [Benchmark]
+    public bool ComInterpolacaoConstante()
     {
         var resultado = $"{ConstanteHashTag}{ConstanteA}{ConstanteSeparador}{ConstanteB}{ConstanteSeparador}{ConstanteC}{ConstanteSeparador}{ConstanteD}";
         return string.IsNullOrWhiteSpace(resultado);
     }
     
     [Benchmark]
-    public bool ComInterpolacaoStringHandler()
+    public bool ComInterpolacao()
     {
         var resultado = $"{HashTag}{ValorA}{Separador}{ValorB}{Separador}{ValorC}{Separador}{ValorD}";
         return string.IsNullOrWhiteSpace(resultado);
